@@ -21,8 +21,6 @@ def index(request):
             c = directory(request, request.POST['filepath'])
             return render_to_response('directory.html',
                 context_instance=c)
-    else:
-        form = DocumentForm()
 
     return render_to_response('index.html', 
         { 'form': DocumentForm()  },
@@ -36,23 +34,13 @@ def directory(request, path):
         if os.path.isdir(path):
 
             files = glob.glob(path + '/*.mzML')
-            #tpl = loader.get_template('directory.html')
-            #c = Context(request, {
-            #    'flist': [{'name':f, 'type':t} for (f, d, t) in files if not d],
-            #    'path': path } )
+            if (len(files) == 0):
+                files = ['no mzML files found']
             c = RequestContext(request, {'flist': files, 'path': path})
-            #return HttpResponse(tpl.render(c), 
-            #    content_type="application/xhtml+xml" )
-            #return render_to_response('directory.html', {
-            #    context_instance=c )
             return c
 
         else:
-            c = RequestContext(request)
-            #return render_to_response('index.html',
-            #    { 'form': DocumentForm(),  },
-            #    context_instance=RequestContext(request)
-            #)
+            c = RequestContext(request, {'flist': ['directory does not exist'], 'path': path})
             return c
 
     except ValueError: raise Http404
