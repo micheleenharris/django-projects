@@ -1,0 +1,10 @@
+
+{% if flist %}
+<h1>Files in //{{ path }}</h1>
+<ul>
+{% for f in flist %}
+<li>{{ f }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
