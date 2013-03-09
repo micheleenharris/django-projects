@@ -2,15 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>QuaMeter Atlas</title>   
+        <title>QuaMeter Database</title>   
     </head>
     <body>
-    <h1>Welcome to the QuameterAtlas</h1>
-        <!-- Upload form. Note enctype attribute! -->
-<!--
-        <form action="{% url index %}" method="post" enctype="multipart/form-data">
--->
-        <form action="/index/" method="post" enctype="multipart/form-data">
+    <h1>Welcome to the QuameterDatabase</h1>
+        <!-- Index page form. -->
+        <form action="/index/" method="post">
             {% csrf_token %}
             
             <!--The file path arg-->
@@ -23,7 +20,10 @@
             <p>{{ form.database.label_tag}}</p>
             <p>{{ form.database }}</p>
 
-            <p><input type="submit" value="Start" /></p>
+            <p>{{ form.email.label_tag}}</p>
+            <p>{{ form.email }}</p>
+
+            <p><input type="submit" value="Next" /></p>
         </form>
     </body>
 </html> 

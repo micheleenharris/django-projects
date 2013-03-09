@@ -29,11 +29,5 @@ class DocumentForm(forms.Form):
         label = 'Choose a database for the search',
         widget = forms.Select(choices=DBASE_CHOICE))
 
-#class SettingsForm(forms.Form):
-#    instrument = forms.CharField(max_length=2,
-#        label = 'Choose an instrument',
-#        widget = forms.Select(choices=INSTRUMENT_CHOICE))
-
-#    database = forms.CharField(
-#        label = 'Choose a database for the search',
-#        widget = forms.Select(choices=DBASE_CHOICE))
+    email = forms.CharField(max_length=50,
+        label = 'Your email address')
